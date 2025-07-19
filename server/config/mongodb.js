@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
-
+import 'dotenv/config'
 const connectDB = async() => {
     mongoose.connection.on('connected', () => console.log("Database connected"))
-    await mongoose.connect(`${process.env.MONGODB_URI}/tripleW`)
+    await mongoose.connect(`${process.env.MONGODB_URI}/tripleW`);
+
 }
 
 export default connectDB
