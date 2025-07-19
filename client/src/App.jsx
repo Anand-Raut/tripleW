@@ -3,14 +3,14 @@ import GivePointsButton from './components/GivePointsButton';
 
 function App() {
   const [users, setUsers] = useState([]);
-
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const get_users = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/user/get`);
+      const res = await fetch(`${BASE_URL}/user/get`);
       const data = await res.json();
       if (data.success) setUsers(data.users);
     } catch (err) {
-      console.error(err);
+      console.error(err); 
     }
   };
 

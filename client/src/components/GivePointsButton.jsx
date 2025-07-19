@@ -1,7 +1,8 @@
 const GivePointsButton = ({ userId, onClaimed }) => {
   const handleClick = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/user/claim-points`, {
+      const BASE_URL = import.meta.env.VITE_BASE_URL;
+      const res = await fetch(`${BASE_URL}/user/claim-points`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId }),
