@@ -2,6 +2,7 @@ const GivePointsButton = ({ userId, onClaimed }) => {
   const BASE_URL = import.meta.env.VITE_BASE_URL;
 
   const handleClick = async () => {
+    console.log("testing: handleclick executed")
     try {
       const res = await fetch(`${BASE_URL}/user/claim-points`, {
         method: "POST",
