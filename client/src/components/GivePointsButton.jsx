@@ -3,7 +3,7 @@ const GivePointsButton = ({ userId, onClaimed }) => {
 
   const handleClick = async () => {
     try {
-      const res = await fetch(`${BASE_URL}/user/give-points`, {
+      const res = await fetch(`${BASE_URL}/user/claim-points`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId }),
