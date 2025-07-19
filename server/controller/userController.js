@@ -33,6 +33,7 @@ export const give_points = async (req, res) => {
     return res.json({
       success: true,
       message: `${random_points} points allotted to ${user.name}`,
+      pointsGiven: random_points,
       user
     });
 
