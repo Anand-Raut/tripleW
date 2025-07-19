@@ -9,19 +9,23 @@ await connectDB()
 
 // Middlewares
 const allowedOrigins = [
+  "http://localhost:5173",
   process.env.FRONTEND_URL
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
+    console.log("Incoming origin:", origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log("Blocked by CORS:", origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true
 }));
+
 app.use(express.json())
 
 //Routes
