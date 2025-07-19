@@ -1,7 +1,7 @@
 import userModel from "../models/userModel.js";
 
 export const get_users = async (req, res) => {
-  const users = await userModel.find()
+  const users = await userModel.find().sort({ points:-1 })
   if (users.length === 0) {
     return res.json({success: true, message: "No User"})
   }

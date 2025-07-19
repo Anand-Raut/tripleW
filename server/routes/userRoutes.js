@@ -4,7 +4,7 @@ import { give_points, create_user, get_users } from '../controller/userControlle
 const userRouter = express.Router()
 
 userRouter.get("/get", get_users)
-userRouter.post("/give-points", give_points)
+userRouter.post("/claim-points", give_points)
 userRouter.post("/create", create_user)
 
 export default userRouter
