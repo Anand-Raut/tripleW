@@ -14,13 +14,14 @@ const GivePointsButton = ({ userId, onClaimed }) => {
       const data = await res.json();
 
       if (data.success) {
-        const points = data.pointsGiven || 5; // fallback if backend doesn't send points
-        setAwardedPoints(points);
+        setAwardedPoints(data.pointsGiven);
         onClaimed();
         setTimeout(() => setAwardedPoints(null), 1500);
+      } else {
+        console.error(data.message || "Failed to claim points");
       }
     } catch (err) {
-      console.error(err);
+      console.error("Error claiming points:", err);
     }
   };
 
@@ -28,11 +29,11 @@ const GivePointsButton = ({ userId, onClaimed }) => {
     <div className="relative flex items-center">
       <button
         onClick={handleClick}
-        className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-md font-medium transition"
+        className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-md font-semibold shadow transition active:scale-95"
       >
         + Give Points
       </button>
-      {awardedPoints && (
+      {awardedPoints !== null && (
         <span className="absolute -top-5 left-1/2 -translate-x-1/2 text-indigo-600 font-bold text-xs animate-bounce">
           +{awardedPoints}
         </span>
