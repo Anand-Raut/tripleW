@@ -1,16 +1,15 @@
 const GivePointsButton = ({ userId, onClaimed }) => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const handleClick = async () => {
     try {
-      const BASE_URL = import.meta.env.VITE_BASE_URL;
-      const res = await fetch(`${BASE_URL}/user/claim-points`, {
+      const res = await fetch(`${BASE_URL}/user/give-points`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId }),
       });
       const data = await res.json();
-      if (data.success){
-         onClaimed?.();
-      }
+      if (data.success) onClaimed();
     } catch (err) {
       console.error(err);
     }
@@ -21,7 +20,7 @@ const GivePointsButton = ({ userId, onClaimed }) => {
       onClick={handleClick}
       className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm px-4 py-2 rounded-md font-medium transition"
     >
-      + Points
+      + Give Points
     </button>
   );
 };
